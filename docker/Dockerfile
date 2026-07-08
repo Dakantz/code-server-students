@@ -6,7 +6,7 @@ RUN --mount=target=/var/lib/apt/lists,type=cache,sharing=locked \
     apt update 
 RUN --mount=target=/var/lib/apt/lists,type=cache,sharing=locked \
     --mount=target=/var/cache/apt,type=cache,sharing=locked \ 
-    apt install git wget curl quilt python3 build-essential gcc make libkrb5-dev pkg-config libx11-dev libxkbfile-dev  -y
+    apt install git wget curl quilt python3 build-essential gcc make libkrb5-dev pkg-config libx11-dev libxkbfile-dev jq -y
 
 
 
@@ -29,6 +29,7 @@ COPY typings typings
 COPY package*.json .
 COPY lib/vscode lib/vscode
 RUN --mount=type=cache,target=/root/.npm npm i
+COPY .git .git
 RUN VERSION='0.0.0' npm run build:vscode
 
 COPY . .
