@@ -72,20 +72,20 @@ main() {
     "enableTelemetry": true,
     "quality": "stable",
     "codeServerVersion": "$VERSION",
-    "nameShort": "code-server",
-    "nameLong": "code-server",
-    "applicationName": "code-server",
-    "dataFolderName": ".code-server",
+    "nameShort": "code-tugraz",
+    "nameLong": "code-tugraz",
+    "applicationName": "code-tugraz",
+    "dataFolderName": ".code-tugraz",
     "win32MutexName": "codeserver",
     "licenseUrl": "https://github.com/coder/code-server/blob/main/LICENSE",
-    "win32DirName": "code-server",
-    "win32NameVersion": "code-server",
-    "win32AppUserModelId": "coder.code-server",
-    "win32ShellNameShort": "c&ode-server",
-    "darwinBundleIdentifier": "com.coder.code.server",
-    "linuxIconName": "com.coder.code.server",
-    "reportIssueUrl": "https://github.com/coder/code-server/issues/new",
-    "documentationUrl": "https://go.microsoft.com/fwlink/?LinkID=533484#vscode",
+    "win32DirName": "code-tugraz",
+    "win32NameVersion": "code-tugraz",
+    "win32AppUserModelId": "coder.code-tugraz",
+    "win32ShellNameShort": "c&ode-tugraz",
+    "darwinBundleIdentifier": "com.coder.code.tugraz",
+    "linuxIconName": "com.coder.code.tugraz",
+    "reportIssueUrl": "https://github.com/Dakantz/code-server-students",
+    "documentationUrl": "https://github.com/Dakantz/code-server-students",
     "keyboardShortcutsUrlMac": "https://go.microsoft.com/fwlink/?linkid=832143",
     "keyboardShortcutsUrlLinux": "https://go.microsoft.com/fwlink/?linkid=832144",
     "keyboardShortcutsUrlWin": "https://go.microsoft.com/fwlink/?linkid=832145",
@@ -108,7 +108,7 @@ EOF
   ) > product.json
 
 
-  VSCODE_QUALITY=stable npm run gulp compile-copilot-extension-full-build
+  VSCODE_QUALITY=stable npm run gulp compile-native-extensions-build
 
   npm run gulp core-ci
   npm run gulp "vscode-reh-web-$VSCODE_TARGET${MINIFY:+-min}-ci"

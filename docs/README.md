@@ -1,6 +1,19 @@
-# code-server
+# code-server (for students)
 
-[!["GitHub Discussions"](https://img.shields.io/badge/%20GitHub-%20Discussions-gray.svg?longCache=true&logo=github&colorB=purple)](https://github.com/coder/code-server/discussions) [!["Join us on Slack"](https://img.shields.io/badge/join-us%20on%20slack-gray.svg?longCache=true&logo=slack&colorB=brightgreen)](https://coder.com/community) [![Twitter Follow](https://img.shields.io/twitter/follow/CoderHQ?label=%40CoderHQ&style=social)](https://twitter.com/coderhq) [![Discord](https://img.shields.io/discord/747933592273027093)](https://discord.com/invite/coder) [![codecov](https://codecov.io/gh/coder/code-server/branch/main/graph/badge.svg?token=5iM9farjnC)](https://codecov.io/gh/coder/code-server) [![See latest](https://img.shields.io/static/v1?label=Docs&message=see%20latest&color=blue)](https://coder.com/docs/code-server/latest)
+## This is a fork of the original code-server intended for student exam settings!
+
+### Getting started
+
+```sh
+# clone ..
+git submodule update --init
+bash ci/build/update-vscode.sh # need to install quilt e.g. brew install quilt
+nvm use 24
+npm i -D # might need to run multiple times (??)
+VERSION='0.0.0' npm run build:vscode
+npm run build
+node out/node/entry.js
+
 
 Run [VS Code](https://github.com/Microsoft/vscode) on any machine anywhere and
 access it in the browser.
