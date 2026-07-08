@@ -10,7 +10,7 @@ fix-bin-script() {
   local script="lib/vscode-reh-web-$VSCODE_TARGET/bin/$1"
   sed -i.bak "s/@@VERSION@@/$(vscode_version)/g" "$script"
   sed -i.bak "s/@@COMMIT@@/$BUILD_SOURCEVERSION/g" "$script"
-  sed -i.bak "s/@@APPNAME@@/code-server/g" "$script"
+  sed -i.bak "s/@@APPNAME@@/code-tugraz/g" "$script"
 
   # Fix Node path on Darwin and Linux.
   # We do not want expansion here; this text should make it to the file as-is.
@@ -64,7 +64,9 @@ main() {
   #
   # This needs to be done before building as Code will read this file and embed
   # it into the client-side code.
-  git checkout product.json             # Reset in case the script exited early.
+
+  ## EDIT: remove SLOP generator
+  # git checkout product.json             # Reset in case the script exited early.
   cp product.json product.original.json # Since jq has no inline edit.
   jq --slurp '.[0] * .[1]' product.original.json <(
     cat << EOF
@@ -96,9 +98,10 @@ main() {
       "https://open-vsx.org"
     ],
     "trustedExtensionAuthAccess": [
-      "vscode.git", "vscode.github",
-      "github.vscode-pull-request-github",
-      "github.copilot", "github.copilot-chat"
+      "vscode.git", "vscode.github", "ms-vscode.cpptools-extension-pack"
+    ],
+    "allowedExtensions": [
+      "vscode.git", "vscode.github", "ms-vscode.cpptools-extension-pack"
     ],
     "aiConfig": {
       "ariaKey": "code-server"
@@ -108,16 +111,10 @@ EOF
   ) > product.json
 
 
-  VSCODE_QUALITY=stable npm run gulp compile-native-extensions-build
+  VSCODE_QUALITY=stable npm run gulp compile-copilot-extension-full-build
 
   npm run gulp core-ci
   npm run gulp "vscode-reh-web-$VSCODE_TARGET${MINIFY:+-min}-ci"
-
-  # Reset so if you develop after building you will not be stuck with the wrong
-  # commit (the dev client will use `oss-dev` but the dev server will still use
-  # product.json which will have `stable-$commit`).
-  git checkout product.json
-
   popd
 
   pushd "lib/vscode-reh-web-$VSCODE_TARGET"
@@ -136,7 +133,7 @@ EOF
       fix-bin-script helpers/browser.cmd
       ;;
     *)
-      fix-bin-script remote-cli/code-server
+      fix-bin-script remote-cli/code-tugraz
       fix-bin-script helpers/browser.sh
       ;;
   esac
@@ -144,7 +141,7 @@ EOF
   # Include bin scripts for other platforms so we can use the right one in the
   # NPM post-install.
 
-  # These provide a `code-server` command in the integrated terminal to open
+  # These provide a `code-tugraz` command in the integrated terminal to open
   # files in the current instance.
   copy-bin-script remote-cli/code-darwin.sh
   copy-bin-script remote-cli/code-linux.sh

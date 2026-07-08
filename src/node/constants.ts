@@ -19,7 +19,7 @@ export function getPackageJson(relativePath: string): PackageJson {
 }
 
 export const rootPath = path.resolve(__dirname, "../..")
-export const vsRootPath = path.join(rootPath, "lib/vscode-reh-web-min")
+export const vsRootPath = path.join(rootPath, "lib/vscode-reh-web-darwin-arm64")
 const PACKAGE_JSON = "package.json"
 const pkg = getPackageJson(`${rootPath}/${PACKAGE_JSON}`)
 const codePkg = getPackageJson(`${vsRootPath}/${PACKAGE_JSON}`) || { version: "0.0.0" }
