@@ -152,7 +152,7 @@ EOF
   copy-bin-script helpers/browser-linux.sh
   copy-bin-script helpers/browser.cmd
 
-  mw lib/vscode-reh-web-$VSCODE_TARGET lib/vscode-web
+  mv lib/vscode-reh-web-$VSCODE_TARGET lib/vscode-web
 }
 
 main "$@"
