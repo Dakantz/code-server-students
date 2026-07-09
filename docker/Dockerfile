@@ -53,12 +53,12 @@ RUN bash -c "source $NVM_DIR/nvm.sh && nvm use $NODE_VERSION"
 
 ENV NODE_PATH=$NVM_DIR/versions/node/v$NODE_VERSION/lib/node_modules
 ENV PATH=$NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
-WORKDIR /code-server
 
-COPY --from=build-stage lib/vscode-web lib/vscode-web
-COPY --from=build-stage out out
+WORKDIR /code-tug
+
+COPY --from=build-stage /code-server/lib/vscode-web lib/vscode-web
+COPY --from=build-stage /code-server/out out
 COPY docker docker
 EXPOSE 8080
 
-RUN docker/entrypoint.sh
-COPY .gitmodules .
+ENTRYPOINT [ "docker/entrypoint.sh" ] 
