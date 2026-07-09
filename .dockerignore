@@ -5,4 +5,4 @@ lib/vscode*web*/**
 **/vscode*/out*/**/*
 **/vscode*/.build*/**/*
 .pc
-docker/
+# docker/
