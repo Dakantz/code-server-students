@@ -55,7 +55,7 @@ ENV NODE_PATH=$NVM_DIR/versions/node/v$NODE_VERSION/lib/node_modules
 ENV PATH=$NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
 WORKDIR /code-server
 
-COPY --from=build-stage lib/vscode/out lib/vscode/out
+COPY --from=build-stage lib/vscode-web lib/vscode-web
 COPY --from=build-stage out out
 COPY docker docker
 EXPOSE 8080

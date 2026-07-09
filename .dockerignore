@@ -1,6 +1,7 @@
 node_modules
 **/node_modules/**/*
 out*
-**/out*/**/*
+**/vscode*/out*/**/*
+**/vscode*/.build*/**/*
 lib/vscode-reh
 .pc
