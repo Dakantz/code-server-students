@@ -47,7 +47,8 @@ main() {
   # not update when only our patch files change, and that will cause caching
   # issues where the browser keeps using outdated code.
   export BUILD_SOURCEVERSION
-  BUILD_SOURCEVERSION=$(git rev-parse HEAD)
+  # BUILD_SOURCEVERSION use $VERSION or default to aaaa
+  BUILD_SOURCEVERSION="b10a513d3fc95bd7ad95957c3b37442985fc43e7"
 
   pushd lib/vscode
 
@@ -74,6 +75,7 @@ main() {
     "enableTelemetry": true,
     "quality": "stable",
     "codeServerVersion": "$VERSION",
+    "commit": "$BUILD_SOURCEVERSION",
     "nameShort": "code-tugraz",
     "nameLong": "code-tugraz",
     "applicationName": "code-tugraz",

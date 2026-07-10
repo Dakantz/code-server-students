@@ -6,3 +6,4 @@ lib/vscode*web*/**
 **/vscode*/.build*/**/*
 .pc
 # docker/
+workspace

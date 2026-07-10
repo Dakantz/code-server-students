@@ -23,3 +23,5 @@ test/test-results
 /.pc
 /patches/*.diff~
 lib/vscode-web
+workspace/config/code-server/config.yaml
+workspace/local/**/*
